@@ -1,0 +1,14 @@
+attendance: Attendance below 75 percent may lead to exam disqualification.
+fees: Fee payment is due before the semester starts.
+scholarship: Scholarships are available for students with CGPA above 8.0.
+cgpa: CGPA is calculated based on semester-wise academic performance.
+Attendance: Attendance below 75 percent may lead to exam disqualification.
+Fees: Fee payment is due before the semester starts.
+Scholarship: Scholarships are available for students with CGPA above 8.0.
+CGPA: CGPA is calculated based on semester-wise academic performance.
+ATTENDANCE: Attendance below 75 percent may lead to exam disqualification.
+FEES: Fee payment is due before the semester starts.
+SCHOLARSHIP: Scholarships are available for students with CGPA above 8.0.
+attendence: Attendance below 75 percent may lead to exam disqualification.
+Attendence: Attendance below 75 percent may lead to exam disqualification.
+ATTENDENCE: Attendance below 75 percent may lead to exam disqualification.

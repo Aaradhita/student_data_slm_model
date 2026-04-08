@@ -1,0 +1,12 @@
+/* Global reset */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Orbitron',sans-serif;background:linear-gradient(135deg,#000010 0%,#000000 100%);color:#e0ffe0;line-height:1.4;}
+/* accent colors */
+:root{--accent:#00ff55;--accent-light:#00ff99;}
+/* minimal enhancements */
+a, button{transition:color .2s,background .2s;}
+a:hover{color:var(--accent-light);}
+button{background:var(--accent);color:#000;border:none;border-radius:4px;padding:8px 16px;cursor:pointer;}
+button:hover{background:var(--accent-light);}
+/* utilities */
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}

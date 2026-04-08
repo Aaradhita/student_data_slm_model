@@ -1,0 +1,53 @@
+# Student Portal API v2 - Complete Dependencies
+# Generated: February 23, 2026
+# Python Version: 3.11+
+
+# === Core Framework ===
+fastapi==0.128.2
+uvicorn==0.40.0
+starlette==0.50.0
+pydantic==2.12.5
+pydantic-core==2.41.5
+
+# === Authentication & Security ===
+PyJWT==2.10.1
+python-multipart==0.0.6
+bcrypt==4.1.3
+
+# === Data Processing & Analysis ===
+numpy==2.4.2
+pandas==3.0.0
+scikit-learn==1.8.0
+scipy==1.17.0
+joblib==1.5.3
+threadpoolctl==3.6.0
+
+# === File Handling ===
+openpyxl==3.1.5
+
+# === Vector Search & Embeddings ===
+faiss-cpu==1.13.2
+
+# === HTTP & Networking ===
+requests==2.32.5
+h11==0.16.0
+anyio==4.12.1
+
+# === Web Templates & Utilities ===
+Jinja2==3.1.6
+click==8.3.1
+colorama==0.4.6
+tzdata==2025.3
+
+# === Testing ===
+pytest==8.4.2
+pytest-asyncio==0.24.0
+
+# === Development & Documentation ===
+# Note: This file includes all transitive dependencies. 
+# For production, use requirements.txt instead.
+# 
+# To recreate this environment:
+# > python -m venv venv
+# > .\venv\Scripts\activate
+# > pip install -r requirements_full.txt

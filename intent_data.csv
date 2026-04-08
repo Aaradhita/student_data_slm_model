@@ -1,0 +1,9 @@
+text,intent
+check my fee details,fee_enquiry
+what is my fee due,fee_enquiry
+attendance percentage,attendance
+what is my attendance,attendance
+show my cgpa,academic
+academic details,academic
+scholarship eligibility,scholarship
+scholarship status,scholarship

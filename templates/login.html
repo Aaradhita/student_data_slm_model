@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="login-panel">
+    <div class="container">
+        <div class="logo">
+            <h1>📚 Student Portal</h1>
+            <p>Secure Login Required</p>
+        </div>
+        
+        <div class="demo-info">
+            <strong>Demo Credentials:</strong>
+            Register: <code>DEMO001</code><br>
+            Password: <code>demo@123</code>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="register">Register Number</label>
+                <input 
+                    type="text" 
+                    id="register" 
+                    name="register_number" 
+                    placeholder="e.g., DEMO001"
+                    required
+                >
+                <div class="error-message" id="registerError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter your password"
+                    required
+                >
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div id="generalError" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                Login to Dashboard
+            </button>
+        </form>
+        
+        <div class="register-link">
+            Don't have an account? <a onclick="showRegisterModal()">Create one</a>
+        </div>
+    </div> <!-- end container inside login-panel -->
+    </div> <!-- end login-panel -->
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const register = document.getElementById('register').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const generalError = document.getElementById('generalError');
+            
+            // Clear errors
+            generalError.style.display = 'none';
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<span class="spinner"></span>Logging in...';
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        register_number: register,
+                        password: password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Save token to localStorage
+                    localStorage.setItem('access_token', data.access_token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1000);
+                } else {
+                    generalError.textContent = data.detail || 'Invalid credentials';
+                    generalError.style.display = 'block';
+                }
+            } catch (error) {
+                generalError.textContent = 'Server error. Please try again.';
+                generalError.style.display = 'block';
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = 'Login to Dashboard';
+            }
+        });
+        
+        function showRegisterModal() {
+            const register = prompt('Register Number:');
+            if (!register) return;
+            
+            const password = prompt('Password (min 6 chars):');
+            if (!password) return;
+            
+            const fullName = prompt('Full Name:');
+            if (!fullName) return;
+            
+            const email = prompt('Email:');
+            if (!email) return;
+            
+            // Call register endpoint
+            registerUser(register, password, fullName, email);
+        }
+        
+        async function registerUser(register, password, fullName, email) {
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        register_number: register,
+                        password: password,
+                        full_name: fullName,
+                        email: email
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('✓ Registration successful! Login with your credentials.');
+                    document.getElementById('register').value = register;
+                    document.getElementById('password').value = '';
+                } else {
+                    alert('✗ Registration failed: ' + (data.detail || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('✗ Server error: ' + error.message);
+            }
+        }
+    </script>
+<script>
+    // simple particle background
+    const canvasL = document.createElement('canvas');
+    canvasL.style.position = 'fixed'; canvasL.style.top=0; canvasL.style.left=0;
+    canvasL.style.width='100%'; canvasL.style.height='100%'; canvasL.style.zIndex='-2';
+    document.body.appendChild(canvasL);
+    const ctxL=canvasL.getContext('2d'); let partsL=[];
+    function resL(){canvasL.width=window.innerWidth;canvasL.height=window.innerHeight;}
+    window.addEventListener('resize',resL);resL();
+    function initL(){partsL=[];for(let i=0;i<80;i++)partsL.push({x:Math.random()*canvasL.width,y:Math.random()*canvasL.height,r:Math.random()*3+1,dx:(Math.random()-0.5)*0.7,dy:(Math.random()-0.5)*0.7});}
+    function animL(){ctxL.clearRect(0,0,canvasL.width,canvasL.height);ctxL.fillStyle='rgba(0,255,255,0.15)';partsL.forEach(p=>{ctxL.beginPath();ctxL.arc(p.x,p.y,p.r,0,2*Math.PI);ctxL.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvasL.width)p.dx*=-1; if(p.y<0||p.y>canvasL.height)p.dy*=-1;});requestAnimationFrame(animL);}initL();animL();
+</script>
+</body>
+</html>
