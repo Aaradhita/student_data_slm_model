@@ -1,4 +1,4 @@
-# student_data_slm_model
+# stubot
 Domain-specific chatbot powered by a Small Language Model (SLM) that enables students to access their academic information through natural language queries. The system is integrated with a backend database and provides real-time responses for student-related data such as marks, attendance, and profile details.
 A production-ready student portal with **REAL-TIME DYNAMIC INTENT SYSTEM**, RAG/FAISS vector search, lightweight SLM intent classification, and auto-discoverable database columns.
 
